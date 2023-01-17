@@ -1,0 +1,113 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %}
+Carrito de Compras
+{% endblock %}
+{% block containers %}
+
+
+<div class="bg-light py-3">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 mb-0"><a href="{% url 'producto:product_list' %}">Inicio</a> <span class="mx-2 mb-0">/</span> <strong
+                    class="text-black">Carrito</strong></div>
+        </div>
+    </div>
+</div>
+
+<div class="site-section">
+    <div class="container">
+        <div class="row mb-5">
+            <form class="col-md-12" method="post">
+                <div class="site-blocks-table">
+                    <table class="table align-middle">
+                        <thead>
+                            <tr>
+                                <th scope="col">Imagen</th>
+                                <th scope="col">Producto</th>
+                                <th scope="col">Precio</th>
+                                <th scope="col">Cantidad</th>
+                                <th scope="col">Total</th>
+                                <th scope="col">Eliminar</th>
+                            </tr>
+                        </thead>
+                        <tbody class="table-group-divider">
+                            <tr>{% for item in cart %}
+                                {% with product=item.product %}
+                            <tr>
+                                <td class="product-thumbnail text-center">
+                                    <img src="{{ product.image.url }}" alt="Image" class="img-fluid" style="height: 100px">
+                                </td>
+                                <td class="product-name">
+                                    <h2 class="h5 text-black">{{ product.name }}</h2>
+                                </td>
+                                <td>${{ item.price }}</td>
+                                <td>
+                                    <div class="input-group mb-3" style="max-width: 120px;">
+                                        <div class="input-group-prepend">
+                                            <form action="{% url 'cart:cart_add' product.id %}" method="post">
+                                                {% csrf_token %}
+                                                <div class="row">
+                                                    <div class="col-8">{{ item.update_quantity_form.quantity }} {{ item.update_quantity_form.override }}</div>
+                                                    <div class="col-4"><input class="btn btn-outline-primary js-btn-plus" type="submit"
+                                                        value="Update"></div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>${{ item.total_price }}</td>
+                                <td><a href="{% url 'cart:cart_remove' product.id %}"
+                                        class="btn btn-primary btn-sm">X</a></td>
+                            </tr>
+                            {% endwith %}
+                            {% endfor %}
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </form>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="row mb-5">
+                    <div class="col-md-6 mb-3 mb-md-0">
+                        <button onclick="window.location='{% url "producto:product_list" %}'" class="btn btn-primary btn-sm btn-block">Continuar Comprando</button>
+                    </div>
+                    <div class="col-md-6">
+                        <button class="btn btn-outline-primary btn-sm btn-block">Checkout</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 pl-5">
+                <div class="row justify-content-end">
+                    <div class="col-md-7">
+                        <div class="row">
+                            <div class="col-md-12 text-right border-bottom mb-5">
+                                <h3 class="text-black h4 text-uppercase">Cart Totals</h3>
+                            </div>
+                        </div>
+
+                        <div class="row mb-5">
+                            <div class="col-md-6">
+                                <span class="text-black">Total</span>
+                            </div>
+                            <div class="col-md-6 text-right">
+                                <strong class="text-black">{{ cart.get_total_price_after_discount|floatformat:"2" }}</strong>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
