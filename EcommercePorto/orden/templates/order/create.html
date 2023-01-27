@@ -1,40 +1,39 @@
 {% extends 'core/base.html' %} {% block title %} Verificación {% endblock %} 
 {% block containers %}
-<div class="site-section">
+<div class="site-section py-5">
   <div class="container">
-    <h1 class="text-center">Verificación</h1>
+    <h1 class="text-center pt-3">Verificación</h1>
     <form action="." method="post" class="order-form row">
       {% csrf_token %}
       <div class="col-md-6 col-sm-6 mb-3">
         <label class="label" for="First_name">Nombre: </label>
-        <input type="text" class="form-control" name="{{ form.first_name.name }}">
+        <input type="text" class="form-control" name="{{ form.first_name.name }}" value="{{user.first_name}}" required="">
       </div>
       <div class="col-md-6 col-sm-6 mb-3">
         <label class="label" for="Last_name">Apellido:</label>
-        {{ form.last_name }}
+        <input type="text" class="form-control" name="{{ form.last_name.name }}" value="{{user.last_name}}" required="">
       </div>
       <div class="col-md-6 col-sm-6 mb-3">
         <label class="label" for="Last_name">Correo Electronico:</label>
-        {{ form.email }}
+        <input type="text" class="form-control" name="{{ form.email.name }}" value="{{user.email}}" required="">
       </div>
       <div class="col-md-6 col-sm-6 mb-3">
         <label class="label" for="Last_name">Dirección:</label>
-        {{ form.address }}
+        <input type="text" class="form-control" name="{{ form.address.name }}" value="{{user.address}}" required="">
       </div>
       <div class="col-md-6 col-sm-6 mb-3">
         <label class="label" for="Last_name">Ciudad:</label>
-        {{ form.city }}
+        <input type="text" class="form-control" name="{{ form.city.name }}" required="">
       </div>
       <div class="col-md-6 col-sm-6 mb-3">
         <label class="label" for="Last_name">Codigo Postal:</label>
-        {{ form.postal_code }}
+        <input type="text" class="form-control" name="{{ form.postal_code.name }}" required="">
       </div>
-      <h6>{{form.postal_code.name}}</h6>
       <p>
         <input
           class="btn btn-primary btn-sm btn-block"
           type="submit"
-          value="Place order"
+          value="Realizar Pedido"
         />
       </p>
     </form>
@@ -59,7 +58,7 @@
           </tbody>
           
       </table>
-      <h4>Total: ${{ cart.get_total_price }}</h4>
+      <h4 class="text-end me-4">Total: ${{ cart.get_total_price }}</h4>
     </div>
   </div>
 </div>

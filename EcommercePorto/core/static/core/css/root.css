@@ -18,6 +18,16 @@
     text-decoration: none;
 }
 
+.btn-primary{
+    background: #ffc107 !important;
+    border-color: #d9a300 !important;
+}
+
+.btn-primary:hover{
+    background: #d9a300 !important;
+    border-color: #d9a300 !important;
+}
+
 #opcionesCategoria:hover{
     color: #ffc107;
     text-decoration: underline;

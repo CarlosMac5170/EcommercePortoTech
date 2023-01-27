@@ -25,7 +25,9 @@ SECRET_KEY = 'django-insecure-f(&jkse3p+m*&++sox5f(hf*a3z)*ukg9)u=*&_$l8o0%^fp8n
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+#DEBUG = False
 
+#ALLOWED_HOSTS = ['PortoTech.pythonanywhere.com', 'localhost', '127.0.0.1']
 ALLOWED_HOSTS = []
 
 
@@ -47,8 +49,9 @@ INSTALLED_APPS = [
     'orden',
 ]
 
+LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/'
-LOGOUT_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/login/'
 
 MESSAGE_STORAGE = 'django.contrib.messages.storage.cookie.CookieStorage'
 
@@ -130,7 +133,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_URL = 'static/'
-
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
