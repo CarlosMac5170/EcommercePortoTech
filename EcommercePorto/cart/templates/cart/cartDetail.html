@@ -19,9 +19,9 @@ Carrito de Compras
     <div class="container">
         <div class="row mb-5">
             <form class="col-md-12" method="post">
-                <div class="site-blocks-table">
-                    <table class="table align-middle">
-                        <thead>
+                <div class="site-blocks-table text-center">
+                    <table class="table align-middle ">
+                        <thead style="background: #fed353;">
                             <tr>
                                 <th scope="col">Imagen</th>
                                 <th scope="col">Producto</th>
@@ -36,7 +36,7 @@ Carrito de Compras
                                 {% with product=item.product %}
                             <tr>
                                 <td class="product-thumbnail text-center">
-                                    <img src="{{ product.image.url }}" alt="Image" class="img-fluid" style="height: 100px">
+                                    <img src="{{ product.image.url }}" alt="Image" class="img-fluid" style="height: 50px">
                                 </td>
                                 <td class="product-name">
                                     <h2 class="h5 text-black">{{ product.name }}</h2>
@@ -58,12 +58,14 @@ Carrito de Compras
                                 </td>
                                 <td>${{ item.total_price }}</td>
                                 <td><a href="{% url 'cart:cart_remove' product.id %}"
-                                        class="btn btn-primary btn-sm">X</a></td>
+                                        class="btn btn-danger btn-sm"><i class="bi bi-x-lg"></i></a></td>
                             </tr>
                             {% endwith %}
+                            {% empty %}
+                            <td colspan="6" class="table-danger text-center text-danger">No hay productos en el carrito</td>
                             {% endfor %}
+                            
                             </tr>
-
                         </tbody>
                     </table>
                 </div>
@@ -76,9 +78,6 @@ Carrito de Compras
                     <div class="col-md-6 mb-3 mb-md-0">
                         <button onclick="window.location='{% url "producto:product_list" %}'" class="btn btn-primary btn-sm btn-block">Continuar Comprando</button>
                     </div>
-                    <div class="col-md-6">
-                        <button class="btn btn-outline-primary btn-sm btn-block">Checkout</button>
-                    </div>
                 </div>
             </div>
             <div class="col-md-6 pl-5">
@@ -86,7 +85,7 @@ Carrito de Compras
                     <div class="col-md-7">
                         <div class="row">
                             <div class="col-md-12 text-right border-bottom mb-5">
-                                <h3 class="text-black h4 text-uppercase">Cart Totals</h3>
+                                <h3 class="text-black h4 text-uppercase">Total del Carrito</h3>
                             </div>
                         </div>
 
@@ -100,8 +99,9 @@ Carrito de Compras
                         </div>
 
                         <div class="row">
-                            <div class="col-md-12">
-                                
+                            <div class="col-md-12 mb-4">
+                                <button class="btn btn-primary py-2 btn-block"
+                                    onclick="window.location='{% url "order:order_create" %}'">Proceed To Checkout</button>
                             </div>
                         </div>
                     </div>

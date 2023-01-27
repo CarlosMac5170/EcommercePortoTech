@@ -17,7 +17,6 @@ from django.contrib import admin
 from django.urls import path, include
 from core import views as core
 from usuario import views as usuario
-from producto import views as producto
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -34,6 +33,7 @@ urlpatterns = [
 #----------------------------------- Products ------------------------------------------------------
     path('productos/', include('producto.urls', namespace='producto')),
     path('carrito/', include('cart.urls', namespace='cart')),
+    path('order/', include('orden.urls', namespace='order'))
 ]
 
 if settings.DEBUG:

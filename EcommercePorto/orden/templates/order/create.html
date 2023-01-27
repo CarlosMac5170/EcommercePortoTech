@@ -1,0 +1,66 @@
+{% extends 'core/base.html' %} {% block title %} Verificación {% endblock %} 
+{% block containers %}
+<div class="site-section">
+  <div class="container">
+    <h1 class="text-center">Verificación</h1>
+    <form action="." method="post" class="order-form row">
+      {% csrf_token %}
+      <div class="col-md-6 col-sm-6 mb-3">
+        <label class="label" for="First_name">Nombre: </label>
+        <input type="text" class="form-control" name="{{ form.first_name.name }}">
+      </div>
+      <div class="col-md-6 col-sm-6 mb-3">
+        <label class="label" for="Last_name">Apellido:</label>
+        {{ form.last_name }}
+      </div>
+      <div class="col-md-6 col-sm-6 mb-3">
+        <label class="label" for="Last_name">Correo Electronico:</label>
+        {{ form.email }}
+      </div>
+      <div class="col-md-6 col-sm-6 mb-3">
+        <label class="label" for="Last_name">Dirección:</label>
+        {{ form.address }}
+      </div>
+      <div class="col-md-6 col-sm-6 mb-3">
+        <label class="label" for="Last_name">Ciudad:</label>
+        {{ form.city }}
+      </div>
+      <div class="col-md-6 col-sm-6 mb-3">
+        <label class="label" for="Last_name">Codigo Postal:</label>
+        {{ form.postal_code }}
+      </div>
+      <h6>{{form.postal_code.name}}</h6>
+      <p>
+        <input
+          class="btn btn-primary btn-sm btn-block"
+          type="submit"
+          value="Place order"
+        />
+      </p>
+    </form>
+    <div class="order-info">
+      <h3 class="text-center">Orden</h3>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Cantidad</th>
+            <th scope="col">Producto</th>
+            <th scope="col">Precio</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in cart %}
+          <tr>
+            <th>{{ item.quantity }}</th>
+            <td>{{ item.product.name }}</td>
+            <td>${{ item.total_price }}</td>
+          </tr>
+        {% endfor %}
+          </tbody>
+          
+      </table>
+      <h4>Total: ${{ cart.get_total_price }}</h4>
+    </div>
+  </div>
+</div>
+{% endblock %}

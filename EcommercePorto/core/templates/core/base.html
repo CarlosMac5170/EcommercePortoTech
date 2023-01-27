@@ -28,8 +28,7 @@
               {% endif %}
           </ul>
             <a class="btn btn-outline-dark" href="{% url 'cart:cart_detail' %}" id="botonCarrito" role="button"><i class="bi bi-cart3"></i> Carrito
-              <span class="badge ms-1 rounded-pill" id="infoCarrito">0</span></a>
-            
+              <span class="badge ms-1 rounded-pill" id="infoCarrito">{% if cantidad == null or cantidad == 0 %} 0 {% else %} {% if cantidad == 1 %}{{ cantidad }}{% else %}+{{ cantidad }}{% endif %}{% endif %}</span></a>
         </div>
       </div>
     </nav>
@@ -68,7 +67,7 @@
               <span class="fa-li"><i class="bi bi-geo-alt"></i></span><span class="ms-2">Portoviejo, Miguel H. Alcivar &, Portoviejo 130106</span>
             </li>
             <li class="nav-item mb-3">
-              <span class="fa-li"><i class="bi bi-envelope"></i></span><span class="ms-2">PortoTech@example.com</span>
+              <span class="fa-li"><i class="bi bi-envelope"></i></span><span class="ms-2">portotechportoviejo@gmail.com</span>
             </li>
             <li class="nav-item mb-3">
               <span class="fa-li"><i class="bi bi-telephone"></i></span><span class="ms-2">0999207504</span>

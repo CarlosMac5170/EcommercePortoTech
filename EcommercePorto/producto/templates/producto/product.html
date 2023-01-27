@@ -11,8 +11,8 @@
     <div class=" order-1 mb-5 mb-md-0">
         <div class="bg-dark pt-4 ps-4 pe-4 pb-2 mb-2">
             <h3 class="mb-2 h4 text-uppercase text-white d-block"> Categorias</h3>
-                <nav style="--bs-breadcrumb-divider: '  | ';">
-                    <ol class="breadcrumb">
+                <nav style="--bs-breadcrumb-divider: ' | ';">
+                    <ol class="breadcrumb"> &sbnp;
                       <li class="breadcrumb-item" ><a href="{% url 'producto:product_list' %}"id="opcionesCategoria">Todos</a></li>
                       {% for c in categories %}
                         <li class="breadcrumb-item active" >
@@ -28,13 +28,14 @@
             {% if not products %}
             <div class="row align-items-center text-center"  style="height: 430px">
                 <div class="col-sm-12">
-                  <h4 class="text-muted">No hay productos en esta Categoria </h4>
+                  <h4 class="text-muted">No hay productos</h4>
                 </div>
               </div>           
             {% else %}
             
-            {% for product in products %}
+            
             <div class="row gx-4 gx-lg-5 row-cols-md-3 row-cols-xl-4 justify-content-center">
+                {% for product in products %}
             <div class="col mb-5">
                 <div class="card h-100">
                     <!-- Product image-->
